@@ -11,3 +11,32 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+
+
+
+model User{
+  id Int @id @default(autoincrement())
+  // basic details
+  firstName String
+  lastName String
+  email String @unique
+  password String 
+  
+
+  // user status
+  isEmailVerified Boolean @default(false)
+  isActive Boolean @default(true)
+
+  // Account verification
+  verificationToken      String?   @unique
+  verificationTokenExpiry DateTime?
+
+  // Password reset
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
+
+  // timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
