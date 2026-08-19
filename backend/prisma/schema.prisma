@@ -9,7 +9,6 @@ datasource db {
 
 model User {
   id                      Int       @id @default(autoincrement())
-  uuid                    String    @unique @db.Uuid
   firstName               String
   lastName                String
   email                   String    @unique
@@ -22,4 +21,5 @@ model User {
   resetTokenExpiry        DateTime?
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
+  uuid                    String    @unique @db.Uuid
 }
