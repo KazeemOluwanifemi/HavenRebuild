@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import prisma from "../../lib/prisma.js";
 import { Prisma } from "../generated/prisma/client.ts";
 import { AppError } from "./../utils/AppError.js";
+import { v4 as uuidv4 } from "uuid";
 export const signupService = async ({
   firstName,
   lastName,
@@ -17,6 +18,7 @@ export const signupService = async ({
     const verificationTokenExpiry = new Date(Date.now() + 10 * 60 * 1000);
     const newUser = await prisma.user.create({
       data: {
+        uuid: uuidv4(),
         firstName,
         lastName,
         email,
